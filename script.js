@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Grab all sections and your original nav items
+  const navLinks = document.querySelectorAll(".nav-link");
   const sections = document.querySelectorAll("section[id]");
-  const navItems = document.querySelectorAll("[data-nav]");
 
   const options = {
     root: null,
-    rootMargin: "-40% 0px -40% 0px", // Triggers when the section is in the middle of the screen
+    rootMargin: "-30% 0px -50% 0px", // Triggers color when section fills the screen center
     threshold: 0
   };
 
@@ -14,13 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute("id");
 
-        navItems.forEach((item) => {
-          if (item.getAttribute("data-nav") === id) {
-            // Make the active one yellow
-            item.style.color = "#E2A245"; 
+        navLinks.forEach((link) => {
+          // Check if the link's href matches the visible section's ID
+          if (link.getAttribute("href") === `#${id}`) {
+            link.classList.add("active-section");
           } else {
-            // Keep the inactive ones white
-            item.style.color = "#FFFFFF"; 
+            link.classList.remove("active-section");
           }
         });
       }
