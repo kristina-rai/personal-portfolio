@@ -1,0 +1,802 @@
+/* Global Reset to kill unwanted right margins and horizontal scroll */
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Instantly locks down horizontal side-scrolling */
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit; /* Ensures padding scales INSIDE containers, not outside */
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Caveat:wght@600&family=Inter:wght@500&display=swap');
+
+/* 1. Base Layout Setup */
+#hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-color: #e2ded5; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+/* 2. Handwriting notes at the top */
+.text-handwritten {
+    font-family: 'Caveat', cursive;
+    font-size: 2.2rem;
+    color: #111;
+}
+
+.side-text {
+    position: absolute;
+    right: 12%;
+    top: 55px;
+    transform: rotate(-6deg);
+}
+
+/* 3. Main Center Area (Keeps your avatar exactly where it is in your screenshot) */
+/* 1. Gives the main container a locked vertical size so the avatar is forced to scale larger */
+.hero-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; 
+    flex-grow: 1;
+    width: 100%;
+    height: 72vh; /* Holds open a large area for the graphics */
+    position: relative;
+}
+
+/* 2. Structured Name Text brought down a bit more */
+.background-word {
+    font-family: 'Pixelify Sans', sans-serif; 
+    font-size: clamp(4rem, 10vw, 8em); 
+    color: #1b1819; 
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 2px;
+    user-select: none;
+    white-space: nowrap;
+  
+    
+    /* Reduced the bottom space to pull the text closer to your head */
+    margin: 0 0 15px 0; 
+    
+    position: relative;
+    z-index: 1;
+}
+
+/* 3. Your avatar: Noticeably bigger and perfectly grounded */
+.hero-photo {
+    height: 55vh; /* Bumped up from the previous layout to make it look giant and balanced */
+    width: auto;
+    display: block;
+    
+    /* Slightly adjusted pixel anchor to keep it seamlessly resting on the bottom border */
+    margin-bottom: -18px; 
+    
+    position: relative;
+    z-index: 2;
+    
+    /* Keeps pixel art perfectly sharp */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* 4. Footer Layout: Fixed the cutting-off issue */
+.hero-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #333;
+    z-index: 3;
+    
+    /* Added a small margin to push the text up safely away from the browser cutoff zone */
+    margin-top: 10px; 
+    position: relative;
+}
+#hero {
+    background-color: #e2ded5;
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.2) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+.doodle {
+    position: absolute;
+    image-rendering: pixelated;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Top Left */
+.star1 {
+    width: 50px;
+    top: 35%;
+    right: 54%;
+}
+
+/* Top Right */
+.book1 {
+    width: 70px;
+    top: 40%;
+    right: 37%;
+}
+
+/* Bottom Left */
+.apple1 {
+    width: 30px;
+    top: 58%;
+    right: 40%;
+}
+
+/* Bottom Right */
+.cloud1 {
+    width: 55px;
+    top: 55%;
+    right: 60%;
+}
+.sign {
+    position: absolute;
+    z-index: 5;
+    display: inline-block;
+}
+
+.sign img {
+    width: 220px;
+    image-rendering: pixelated;
+    display: block;
+}
+
+/* IMPORTANT: make span position relative to each sign */
+.sign span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 14px;
+    color: black;
+
+    text-align: center;
+    line-height: 1.2;
+    width: 80%;
+    pointer-events: none;
+}
+
+/* positioning for each sign */
+.sign-left {
+    top: 25px;
+    left: 40px;
+}
+
+.sign-right {
+    top: 25px;
+    right: 40px;
+}
+
+
+/* Styling for the new top navigation */
+.portfolio-header {
+    width: 100%;
+    background-color: #e5e2da; /* Matches your background color precisely */
+    padding: 30px 0 10px 0;   /* Generous spacing at the very top */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links {
+    font-family: 'Press Start 2P', monospace; /* Pixel art font style */
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adjust gap between words and dividers */
+}
+
+.nav-links a {
+    font-size: 14px; /* Small headers like your actual portfolio image */
+    text-decoration: none;
+    color: #000000; /* Crisp pixel black */
+    letter-spacing: 1px;
+    transition: color 0.2s ease;
+}
+
+/* Vertical dividers (|) styling */
+.nav-divider {
+    font-size: 14px;
+    color: #000000;
+}
+
+/* Active header state (Changes color to a muted tan/gold just like the mockup) */
+.nav-links a.active {
+    color: #bfa36f; 
+    border-bottom: 2px solid #bfa36f; /* Adds the underline effect */
+    padding-bottom: 2px;
+}
+
+/* Quick hover effect for interaction */
+.nav-links a:hover {
+    color: #bfa36f;
+}
+/* Removes the default browser gap at the very top */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* The black header styling */
+.portfolio-header {
+    width: 100%;
+    background-color: #000000; /* Pitch black background */
+    padding: 20px 0;           /* Spacing inside the header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links {
+    font-family: 'Press Start 2P', monospace; 
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.nav-links a {
+    font-size: 14px; 
+    text-decoration: none;
+    color: #ffffff; /* White text so it shows on black */
+    letter-spacing: 1px;
+    transition: color 0.2s ease;
+}
+
+.nav-divider {
+    font-size: 14px;
+    color: #ffffff; /* White vertical lines */
+}
+
+.nav-links a.active {
+    color: #bfa36f; 
+    border-bottom: 2px solid #bfa36f; 
+    padding-bottom: 2px;
+}
+
+.nav-links a:hover {
+    color: #bfa36f;
+}
+/* Center the spinning Minecraft items perfectly around your avatar */
+/* Container layout to split the screen 50/50 */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body, #introduction {
+    background-color: #e5e2da;
+    margin: 0;
+    padding: 0;
+}
+
+.intro-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 0 20px;
+    align-items: center;
+}
+
+/* Left Side Typography */
+/* --- LEFT SIDE: MINECRAFT PIXEL TYPOGRAPHY --- */
+
+/* For your "hello!" header */
+/* --- LEFT SIDE: MINECRAFT PIXEL TYPOGRAPHY --- */
+
+/* For your "hello!" header */
+.intro-text h2.mc-label {
+    font-family: 'VT323', monospace !important; /* Forces Minecraft style pixel font */
+    font-size: 4rem;                 
+    background: #000000;             
+    color: #ffffff;
+    display: inline-block;
+    padding: 0px 16px 6px 16px;      
+    text-transform: lowercase;
+    margin-bottom: 25px;
+    box-shadow: 4px 4px 0px #555555; 
+    letter-spacing: 1px;
+}
+
+/* For the descriptive paragraph text underneath */
+.intro-text p {
+    font-family: 'VT323', monospace !important; /* Forces Minecraft style pixel font */
+    font-size: 1.9rem;               /* Big and readable pixel art size */
+    line-height: 1.2;                
+    color: #111111;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+/* --- THE FIX: RIGHT SIDE CONTAINER --- */
+.intro-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Acts as the master anchor for the floating text image */
+}
+
+/* The frame shrinks tightly to fit the 250px image width */
+.pixel-strip {
+    background: #c6c6c6; 
+    border: 4px solid #555555;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    padding: 16px;
+    transform: rotate(4deg);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
+    display: inline-block; 
+}
+
+/* Restrains Totoro sizing */
+.pixel-art {
+    display: block;
+    width: 250px; 
+    height: auto;
+    image-rendering: pixelated; 
+}
+
+/* --- THE CALLIGRAPHY PNG OVERLAY --- */
+.calligraphy-image {
+    position: absolute;
+    
+    /* --- THE FIX: Break out of the flex center and position from top-left anchor --- */
+    top: -80%;            /* Shifts it up toward the top of the container area */
+    left: -40%;           /* Pushes it past the center line over to the right side */
+    
+    /* Scale the image size up or down here */
+    width: 1000px;        
+    height: auto;
+    
+    transform: rotate(0deg);
+    pointer-events: none; /* Allows mouse interactions to pass through blank spots */
+    z-index: 10;          /* Guarantees it sits completely on top of Totoro and the borders */
+}
+
+/* Mobile fine-tuning to keep it clean on small screens */
+@media (max-width: 768px) {
+    .calligraphy-image {
+        width: 280px;
+        top: 45%;
+        left: 30%;
+        transform: rotate(-5deg);
+    }
+}
+#projects-toc {
+    max-width: 1200px;
+    margin: 120px auto;
+    padding: 0 40px;
+    background-color: #e5e2da;
+}
+
+/* Big, heavy editorial header matching your reference picture */
+.toc-title {
+    font-family: 'VT323', monospace !important;
+    font-size: 7.5rem;
+    color: #111111;
+    margin-bottom: 60px;
+    text-transform: capitalize;
+    letter-spacing: -3px;
+}
+
+/* Arrange the columns side-by-side */
+.toc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+    align-items: start;
+}
+
+.toc-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Thin-line vertical frame for booklet/poster layouts */
+.toc-image-frame {
+    width: 100%;
+    aspect-ratio: 4 / 5; /* Classic portrait proportions */
+    border: 1px solid #444444;
+    background: #ffffff;
+    overflow: hidden;
+    margin-bottom: 35px;
+}
+
+.toc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- BOOKLET INDEX TEXT --- */
+.toc-index-data {
+    font-family: 'VT323', monospace !important;
+    color: #111111;
+}
+
+/* Block headers for each booklet column */
+.toc-row-main {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.toc-num {
+    font-size: 2.2rem;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.toc-heading {
+    font-size: 1.8rem;
+    font-weight: normal;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Sub-index ledger items */
+.toc-sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    width: 85%; 
+}
+
+.toc-sub-list li {
+    display: flex;
+    justify-content: flex-start; 
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: #333333;
+}
+
+/* Spaces out the page numbers beautifully on the left side */
+.toc-sub-list li span:first-child {
+    width: 40px; 
+    display: inline-block;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT FOR THE TOC ONLY
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .toc-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 Layout on Tablets */
+        gap: 50px;
+    }
+    .toc-title {
+        font-size: 5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .toc-grid {
+        grid-template-columns: 1fr; /* Full Stack on Mobile */
+    }
+}
+
+/* ONLY targeting the active link text color, nothing else */
+.nav-link.active {
+  color: #E2A245 !important; /* Forces the active section to be yellow */
+}
+.active {
+  color: #E2A245 !important;
+}
+
+/* Only handles the yellow color swap on scroll, completely safe */
+.nav-link.active-section {
+  color: #E2A245 !important;
+}
+/* Importing Caveat for the title and VT323 for the retro vintage pixel font */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=VT323&display=swap');
+
+#skills.personal-skills-section {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 520px;
+    margin: 50px auto;
+    padding: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+    
+    /* Old brownish paper tone */
+    background-color: #a3a199; 
+    
+    /* Notebook lines mixed with vintage fiber specks and a subtle crinkle overlay */
+    background-image: 
+        linear-gradient(rgba(145, 135, 115, 0.3) 1px, transparent 1px), 
+        linear-gradient(90deg, transparent 79px, rgba(200, 110, 110, 0.4) 1px, rgba(200, 110, 110, 0.4) 2px, transparent 81px),
+        radial-gradient(rgba(100, 80, 50, 0.12) 1px, transparent 0);
+    background-size: 100% 28px, 100% 100%, 6px 6px;
+    
+    box-shadow: inset 0 0 40px rgba(115, 95, 75, 0.2), 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid #d3cbbd;
+    border-radius: 4px;
+    
+    /* Activates the SVG wrinkle distortion */
+    filter: url(#paper-wrinkle);
+}
+
+/* Handwritten Red Title */
+#skills .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 6rem;
+    color: #581313;
+    line-height: 0.8;
+    margin: 0;
+    position: absolute;
+    left: 100px;
+    top: 50px;
+    transform: rotate(-4deg);
+    z-index: 2;
+    letter-spacing: -2px;
+}
+
+/* Vintage Brown Paper Card */
+#skills .skills-card {
+    position: absolute;
+    right: 50px;
+    bottom: 40px;
+    width: 370px;
+    /* Soft kraft/vintage brown tone */
+    background-color: #6b533f;
+    /* Simulated paper fiber texture */
+    background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 0);
+    background-size: 4px 4px;
+    
+    padding: 35px 30px 30px 30px;
+    box-sizing: border-box;
+    transform: rotate(1.5deg);
+    box-shadow: 3px 10px 25px rgba(60, 45, 35, 0.25);
+    z-index: 3;
+    
+    /* Jagged torn edges */
+    clip-path: polygon(
+        0% 4%, 7% 1%, 15% 5%, 22% 0%, 30% 4%, 38% 1%, 46% 5%, 55% 1%, 64% 4%, 72% 0%, 81% 5%, 89% 1%, 95% 4%, 100% 1%, 
+        98% 25%, 100% 48%, 97% 72%, 100% 90%, 98% 100%, 
+        88% 96%, 79% 100%, 66% 96%, 53% 99%, 40% 96%, 26% 100%, 12% 96%, 0% 100%,
+        2% 73%, 0% 48%, 3% 23%
+    );
+}
+
+
+
+
+/* Vintage Card Headers */
+#skills .card-content h3 {
+    font-family: 'VT323', monospace;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+    color: #010101; /* Deep sepia/brown */
+    margin-top: 5px;
+    margin-bottom: 12px;
+    border-bottom: 2px dashed #030201;
+    padding-bottom: 4px;
+}
+
+/* Vintage Pixel Font Lists */
+#skills .card-content ul {
+    font-family: 'VT323', monospace;
+    font-size: 1.65rem; /* Pixel fonts render smaller, scaled up for legibility */
+    color: #020101;
+    line-height: 1.3;
+    padding-left: 20px;
+    margin: 0;
+}
+
+#skills .card-content ul li {
+    margin-bottom: 4px;
+}
+
+/* Upsized Ghibli Pixel Art */
+#skills .ghibli-pixel-art {
+    position: absolute;
+    left: 110px;
+    bottom: 90px;
+    width: 200px; /* Scaled up from 140px */
+    height: auto;
+    z-index: 1;
+    filter: drop-shadow(3px 5px 8px rgba(0, 0, 0, 0.15));
+}
+
+#skills .ghibli-pixel-art img {
+    width: 100%;
+    height: auto;
+    display: block;
+    image-rendering: pixelated; 
+}
+/* Game Footer Section Container */
+
+/* Game Footer Section Container - Spans edge-to-edge naturally without being cut off */
+.game-footer-section {
+    position: relative;
+    width: 100%;             
+    min-height: 100vh;        /* Uses full viewport height instead of a tiny fixed box */
+    padding: 80px 20px;       /* Gives it clean breathing room on top and bottom */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 0;                /* Removes gaps between sections */
+    
+    /* Ghibli background art setup */
+    background: url('images/naa.png') center/cover no-repeat;
+}
+
+/* Transparent Video Game HUD Dialogue Window */
+.game-footer-section .dialogue-box {
+    position: absolute;
+    width: 85%;
+    max-width: 480px;              /* Made it slightly narrower so it fits cleanly over the cloud zone */
+    background-color: transparent; 
+    border: 4px solid #ffffff;
+    padding: 25px;
+    box-sizing: border-box;
+    font-family: 'VT323', monospace;
+    top: 10%;
+    
+    /* Soft dark glow to ensure pixel text remains fully readable against bright cloud whites */
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35); 
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Video Game Typography Layout */
+.game-footer-section .game-heading {
+    color: #ffd700; /* Retro gold text color for headers */
+    font-size: 2rem;
+    margin: 0 0 10px 0;
+    letter-spacing: 1px;
+}
+
+.game-footer-section .game-text {
+    color: #ffffff;
+    font-size: 1.6rem;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+}
+
+.game-footer-section .action-prompt {
+    color: #00ffff; /* Cyber cyan interactive accent */
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    animation: textBlink 1.5s infinite steps(1);
+}
+
+/* Horizontal Interactive Link Menu */
+.game-footer-section .game-menu {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.game-footer-section .menu-item {
+    color: #ffffff;
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+/* Classic selection cursor hover style */
+.game-footer-section .menu-item:hover {
+    color: #ff007f; /* Vibrant retro pink on hover */
+    text-shadow: 0 0 5px #ff007f;
+}
+
+/* Retro GUI Flashing Arrow Indicator */
+.game-footer-section .pixel-arrow {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 12px solid #ffffff;
+    animation: arrowBounce 0.8s infinite alternate ease-in-out;
+}
+
+/* Animations for that authentic game aesthetic */
+@keyframes arrowBounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(6px); }
+}
+
+@keyframes textBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+/* Container placement on the Ghibli grass scene */
+.game-footer-section .css-totoro {
+    position: absolute;
+    right: 32%;               
+    bottom: 30%;              
+    width: 6px;  
+    height: 4px;
+    z-index: 5;
+    background: transparent;
+    animation: totoroEmote 1.2s infinite steps(1);
+}
+
+@keyframes totoroEmote {
+    /* FRAME 1: Rest/Idle position */
+    0%, 100% {
+        box-shadow:
+            /* Ears */
+            16px 0px #5a5a66, 16px 4px #5a5a66, 20px 4px #5a5a66,
+            40px 0px #5a5a66, 36px 4px #5a5a66, 40px 4px #5a5a66,
+            /* Head Crown */
+            20px 8px #5a5a66, 24px 8px #5a5a66, 28px 8px #5a5a66, 32px 8px #5a5a66, 36px 8px #5a5a66,
+            /* Main Body Layer Upper */
+            16px 12px #5a5a66, 20px 12px #5a5a66, 24px 12px #5a5a66, 28px 12px #5a5a66, 32px 12px #5a5a66, 36px 12px #5a5a66, 40px 12px #5a5a66,
+            /* Whiskers and Eyes */
+            12px 16px #5a5a66, 16px 16px #ffffff, 20px 16px #000000, 24px 16px #5a5a66, 28px 16px #5a5a66, 32px 16px #5a5a66, 36px 16px #000000, 40px 16px #ffffff, 44px 16px #5a5a66,
+            /* Nose & Cheeks */
+            12px 20px #5a5a66, 28px 20px #000000, 44px 20px #5a5a66,
+            /* Arms Down Frame */
+            8px 24px #5a5a66, 12px 24px #5a5a66, 44px 24px #5a5a66, 48px 24px #5a5a66,
+            8px 28px #5a5a66, 12px 28px #5a5a66, 44px 28px #5a5a66, 48px 28px #5a5a66,
+            /* Cream Belly Canvas Area */
+            16px 24px #f4edd2, 20px 24px #f4edd2, 24px 24px #f4edd2, 28px 24px #f4edd2, 32px 24px #f4edd2, 36px 24px #f4edd2, 40px 24px #f4edd2,
+            16px 28px #f4edd2, 20px 28px #f4edd2, 24px 28px #f4edd2, 28px 28px #f4edd2, 32px 28px #f4edd2, 36px 28px #f4edd2, 40px 28px #f4edd2,
+            /* Grey Chest Arrows */
+            20px 24px #5a5a66, 36px 24px #5a5a66, 28px 28px #5a5a66,
+            /* Base Skirt & Feet Zone */
+            16px 32px #5a5a66, 20px 32px #5a5a66, 24px 32px #5a5a66, 28px 32px #5a5a66, 32px 32px #5a5a66, 36px 32px #5a5a66, 40px 32px #5a5a66,
+            16px 36px #000000, 24px 36px #000000, 32px 36px #000000, 40px 36px #000000;
+        transform: scale(2.5); /* Scales up Totoro perfectly crisp without image degradation */
+    }
+
+    /* FRAME 2: Waving Emote Action (Arms shift upwards!) */
+    50% {
+        box-shadow:
+            /* Ears staying consistent */
+            16px 0px #5a5a66, 16px 4px #5a5a66, 20px 4px #5a5a66,
+            40px 0px #5a5a66, 36px 4px #5a5a66, 40px 4px #5a5a66,
+            /* Head Crown */
+            20px 8px #5a5a66, 24px 8px #5a5a66, 28px 8px #5a5a66, 32px 8px #5a5a66, 36px 8px #5a5a66,
+            /* Main Body Layer Upper */
+            16px 12px #5a5a66, 20px 12px #5a5a66, 24px 12px #5a5a66, 28px 12px #5a5a66, 32px 12px #5a5a66, 36px 12px #5a5a66, 40px 12px #5a5a66,
+            /* Whiskers and Eyes */
+            12px 16px #5a5a66, 16px 16px #ffffff, 20px 16px #000000, 24px 16px #5a5a66, 28px 16px #5a5a66, 32px 16px #5a5a66, 36px 16px #000000, 40px 16px #ffffff, 44px 16px #5a5a66,
+            
+            /* 🕹️ ARMS UP ALTERATION: Shift left/right pixels up to simulate a bounce emote */
+            4px 16px #5a5a66, 8px 16px #5a5a66, 48px 16px #5a5a66, 52px 16px #5a5a66,
+            4px 20px #5a5a66, 8px 20px #5a5a66, 48px 20px #5a5a66, 52px 20px #5a5a66,
+            
+            /* Mid Face Details */
+            12px 20px #5a5a66, 28px 20px #000000, 44px 20px #5a5a66,
+            /* Belly Canvas Container Remaining Steady */
+            16px 24px #f4edd2, 20px 24px #f4edd2, 24px 24px #f4edd2, 28px 24px #f4edd2, 32px 24px #f4edd2, 36px 24px #f4edd2, 40px 24px #f4edd2,
+            16px 28px #f4edd2, 20px 28px #f4edd2, 24px 28px #f4edd2, 28px 28px #f4edd2, 32px 28px #f4edd2, 36px 28px #f4edd2, 40px 28px #f4edd2,
+            20px 24px #5a5a66, 36px 24px #5a5a66, 28px 28px #5a5a66,
+            /* Base Skirt Elements */
+            16px 32px #5a5a66, 20px 32px #5a5a66, 24px 32px #5a5a66, 28px 32px #5a5a66, 32px 32px #5a5a66, 36px 32px #5a5a66, 40px 32px #5a5a66,
+            16px 36px #000000, 24px 36px #000000, 32px 36px #000000, 40px 36px #000000;
+        transform: scale(2.5) translateY(-2px); /* Gives him a subtle pixel jump bounce effect */
+    }
+}
